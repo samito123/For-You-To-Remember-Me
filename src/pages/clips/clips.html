@@ -1,0 +1,46 @@
+<ion-header>
+  <ion-navbar color="menu">
+    
+    <ion-buttons left>
+      <button menuToggle ion-button clear>
+        <ion-icon name="menu"></ion-icon>
+      </button>
+    </ion-buttons>
+    <ion-buttons left>
+        <ion-icon>
+          <img src="../../assets/icon/heart_icon.png">
+        </ion-icon>
+    </ion-buttons>
+    <ion-title>
+      <p>{{titulo}}</p>
+    </ion-title>
+
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding class="background-clips">
+  <ion-list>
+    
+    <ion-item ng-repeat="clip in clipList" color="lista">
+      <a class="link-sem-decoracao" href="#">
+        <div class="div-usuario">
+          <ion-avatar class="imagem-post">
+            <img src="../../assets/wallpaper/img_menu_left.png">
+          </ion-avatar>
+          <h2>Slimer</h2>
+          <p>Slimer</p>
+        </div>
+        <hr>
+        <div>
+          <ion-thumbnail class="imagem-post">
+            <img src="../../assets/wallpaper/img_menu_left.png">
+          </ion-thumbnail>
+          <h2>My Neighbor Totoro</h2>
+          <p>Hayao Miyazaki • 1988</p>
+          <p>Hayao Miyazaki • 1988</p>
+        </div>
+      </a>
+    </ion-item>
+    
+  </ion-list>
+</ion-content>

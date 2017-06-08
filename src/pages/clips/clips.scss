@@ -1,0 +1,29 @@
+page-home {
+	.background-clips {
+	    background-image: url('../../assets/wallpaper/clips.jpg')
+	}
+
+	.background-transparente { 
+		border-color: rgba(0, 0, 0, 0);
+		background-color: rgba(0, 0, 0, 0);
+		color: white; 
+	} 
+
+	.link-sem-decoracao:link { 
+		text-decoration:none; 
+	} 
+
+	.div-usuario { 
+		margin: 0 0 0.5em 0;
+	}
+
+	.imagem-post { 
+		float: left;
+		margin-right: 1em;
+	} 
+
+	.imagem-usuario-post { 
+		float: left;
+		margin-right: 1em;
+	} 
+}	
