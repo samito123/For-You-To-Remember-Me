@@ -19,25 +19,30 @@
 </ion-header>
 
 <ion-content padding class="background-clips">
-  <ion-list>
+  <ion-list *ngFor="let clip of clipList">
     
-    <ion-item ng-repeat="clip in clipList" color="lista">
+    <ion-item color="lista">
       <a class="link-sem-decoracao" href="#">
         <div class="div-usuario">
           <ion-avatar class="imagem-post">
-            <img src="../../assets/wallpaper/img_menu_left.png">
+            <img src="{{clip.img_usuario}}">
           </ion-avatar>
-          <h2>Slimer</h2>
-          <p>Slimer</p>
+          <h2>{{clip.nick_usuario}}</h2>
+          <p>{{clip.data_clip}}</p>
         </div>
         <hr>
         <div>
           <ion-thumbnail class="imagem-post">
-            <img src="../../assets/wallpaper/img_menu_left.png">
+            <img src="{{clip.img_clip}}">
           </ion-thumbnail>
-          <h2>My Neighbor Totoro</h2>
-          <p>Hayao Miyazaki • 1988</p>
-          <p>Hayao Miyazaki • 1988</p>
+          <h2>{{clip.titulo_clip}}</h2>
+          <p>{{clip.subtitulo_clip.replace("#", " ")}}</p>
+          <p>
+            <ion-icon name="eye" style="margin-right: 5px;"> {{clip.visualizacoes_clip}}</ion-icon>
+          </p>
+          <p> 
+            <ion-icon name="star"> {{clip.nota_clip}} </ion-icon>
+          </p>
         </div>
       </a>
     </ion-item>
