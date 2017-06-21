@@ -1,7 +1,10 @@
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
 import { Http, Headers, RequestOptions } from '@angular/http';
+import { ModalController } from 'ionic-angular';
 import { LoadingController } from 'ionic-angular';
+
+import { ClipeSelecionado } from '../../pages/clipe_selecionado/clipe_selecionado';
 
 @Component({
   selector: 'page-home',
@@ -17,6 +20,7 @@ export class ClipsPage {
 	loader = this.ConfiguraLoading();
 
 	constructor(public navCtrl: NavController, public http: Http, 
+				public modalCtrl: ModalController, 
 				public loadingCtrl: LoadingController) { 
 
 		this.titulo = 'Clips';
@@ -46,9 +50,9 @@ export class ClipsPage {
 		this.http.post(this.url+'clips/consulta_clips_list_ionic.php', postParams, options)
 			.subscribe(data => {
 				this.clips = JSON.parse(data['_body']);
-				console.log(this.clips);
+				//console.log(this.clips);
 				this.clipList = this.clips;
-				console.log(this.clipList);
+				//console.log(this.clipList);
 			}, error => {
 				console.log(error);// Error getting the data
 		});
@@ -61,31 +65,11 @@ export class ClipsPage {
 		return loader;
 	}
 
-	
+	VisualizarClipSelecionado(id, visualizacoes) {
+    	this.navCtrl.push(ClipeSelecionado, {id_clip: id, visualizacoes_clip: visualizacoes});
+  	}
 
-
-
-  /*function CarregarClips($offset) {
-    //LoadingShow($ionicLoading); 
-    http({
-        method : 'POST',
-        url : url+'clips/consulta_clips_list_ionic.php',
-        data: { usuario: 'appot240_fytrm', senha: '6m-,f;ekPT%8', banco: 'appot240_fytrm', 
-                offset: $offset },
-        headers : {'Content-Type': 'application/x-www-form-urlencoded'}  
-    }).success(function (data, status, headers, config) {
-        console.log(data);
-        //clips = data;
-        //$scope.clipList = data;
-        AdicionaClipNoFinalDaLista(data);
-    }).error(function (data, status, header, config) {                  
-        console.log("Error: "+data);
-    }).finally(function() {
-        //ApresentaClips();
-        LoadingHide($ionicLoading);
-    }).catch(function(error) {
-        console.log("Exception: "+error);
-        ChamaPopUp($ionicPopup);
-    });
-  };*/
+  	aa() {
+    	console.log("aaaaa");
+  	}
 }

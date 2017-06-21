@@ -1,6 +1,6 @@
 page-home {
 	.background-clips {
-	    background-image: url('../../assets/wallpaper/clips.jpg')
+	    background-image: url('../assets/wallpaper/clips.jpg');
 	}
 
 	.background-transparente { 
@@ -11,6 +11,12 @@ page-home {
 
 	.link-sem-decoracao:link { 
 		text-decoration:none; 
+		color: white;
+	}
+
+	.link-sem-decoracao:visited {
+	    text-decoration:none; 
+		color: white;
 	} 
 
 	.div-usuario { 
@@ -20,6 +26,11 @@ page-home {
 	.imagem-post { 
 		float: left;
 		margin-right: 1em;
+	} 
+
+	.imagem-aa { 
+		min-width: 4.5em;
+		min-height: 4.5em;
 	} 
 
 	.imagem-usuario-post { 

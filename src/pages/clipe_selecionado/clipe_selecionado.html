@@ -2,11 +2,6 @@
   <ion-navbar color="menu">
     
     <ion-buttons left>
-      <button menuToggle ion-button clear>
-        <ion-icon name="menu"></ion-icon>
-      </button>
-    </ion-buttons>
-    <ion-buttons left>
         <ion-icon>
           <img src="./assets/icon/heart_icon.png">
         </ion-icon>
@@ -23,7 +18,7 @@
     
     <ion-item color="lista">
       <a class="link-sem-decoracao" href="#" 
-         (click)="VisualizarClipSelecionado(clip.id_clip, clip.visualizacoes_clip)">
+         (click)="VisualizarClipSelecionado(clip.id_clip)">
         <div class="div-usuario">
           <ion-avatar class="imagem-post">
             <img src="{{clip.img_usuario}}">

@@ -5,6 +5,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 
 import { HomePage } from '../pages/home/home';
 import { ClipsPage } from '../pages/clips/clips';
+import { ClipeSelecionado } from '../pages/clipe_selecionado/clipe_selecionado';
 
 @Component({
   templateUrl: 'app.html'

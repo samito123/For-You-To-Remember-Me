@@ -9,12 +9,14 @@ import { HttpModule } from '@angular/http';
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
 import { ClipsPage } from '../pages/clips/clips';
+import { ClipeSelecionado } from '../pages/clipe_selecionado/clipe_selecionado';
 
 @NgModule({
   declarations: [
     MyApp,
     HomePage,
-    ClipsPage
+    ClipsPage,
+    ClipeSelecionado
   ],
   imports: [
     BrowserModule,
@@ -25,7 +27,8 @@ import { ClipsPage } from '../pages/clips/clips';
   entryComponents: [
     MyApp,
     HomePage,
-    ClipsPage
+    ClipsPage,
+    ClipeSelecionado
   ],
   providers: [
     StatusBar,
