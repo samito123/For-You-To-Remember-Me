@@ -6,6 +6,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { HomePage } from '../pages/home/home';
 import { ClipsPage } from '../pages/clips/clips';
 import { ClipeSelecionado } from '../pages/clipe_selecionado/clipe_selecionado';
+import { TabClip } from '../pages/tabs/clip/tab_clip';
 
 @Component({
   templateUrl: 'app.html'
@@ -13,7 +14,8 @@ import { ClipeSelecionado } from '../pages/clipe_selecionado/clipe_selecionado';
 
 export class MyApp {
   rootPage:any = ClipsPage;
-
+  tabsClip: Array<{title: string, component: any}>;
+ 
   constructor(platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen) {
     platform.ready().then(() => {
       // Okay, so the platform is ready and our plugins are available.
@@ -21,6 +23,11 @@ export class MyApp {
       statusBar.styleDefault();
       splashScreen.hide();
     });
+
+    this.tabsClip = [
+      { title: 'Page One', component: ClipsPage },
+      { title: 'Page Two', component: ClipeSelecionado }
+    ];
   }
 }
 

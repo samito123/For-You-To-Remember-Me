@@ -10,13 +10,17 @@ import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
 import { ClipsPage } from '../pages/clips/clips';
 import { ClipeSelecionado } from '../pages/clipe_selecionado/clipe_selecionado';
+import { Avaliacao } from '../pages/modal/avaliacao/avaliacao';
+import { TabClip } from '../pages/tabs/clip/tab_clip';
 
 @NgModule({
   declarations: [
     MyApp,
     HomePage,
     ClipsPage,
-    ClipeSelecionado
+    ClipeSelecionado,
+    Avaliacao,
+    TabClip
   ],
   imports: [
     BrowserModule,
@@ -28,7 +32,9 @@ import { ClipeSelecionado } from '../pages/clipe_selecionado/clipe_selecionado';
     MyApp,
     HomePage,
     ClipsPage,
-    ClipeSelecionado
+    ClipeSelecionado,
+    Avaliacao,
+    TabClip
   ],
   providers: [
     StatusBar,

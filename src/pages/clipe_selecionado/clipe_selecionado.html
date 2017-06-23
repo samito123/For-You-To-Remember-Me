@@ -2,6 +2,11 @@
   <ion-navbar color="menu">
     
     <ion-buttons left>
+        <button ion-button color="white" icon-only (click)="VisualizarAvaliacao()">
+          <ion-icon large name="arrow-back"></ion-icon>
+        </button>
+    </ion-buttons>
+    <ion-buttons left>
         <ion-icon>
           <img src="./assets/icon/heart_icon.png">
         </ion-icon>
@@ -11,41 +16,57 @@
     </ion-title>
 
   </ion-navbar>
+  
 </ion-header>
 
-<ion-content padding class="background-clips">
-  <ion-list *ngFor="let clip of clipList">
-    
-    <ion-item color="lista">
-      <a class="link-sem-decoracao" href="#" 
-         (click)="VisualizarClipSelecionado(clip.id_clip)">
-        <div class="div-usuario">
-          <ion-avatar class="imagem-post">
-            <img src="{{clip.img_usuario}}">
-          </ion-avatar>
-          <h2>{{clip.nick_usuario}}</h2>
-          <p>{{clip.data_clip}}</p>
-        </div>
-        <hr>
-        <div>
-          <ion-thumbnail class="imagem-post">
-            <img class="imagem-aa" src="{{clip.img_clip}}">
-          </ion-thumbnail>
-          <h2>{{clip.titulo_clip}}</h2>
-          <p>{{clip.subtitulo_clip.replace("#", " ")}}</p>
-          <p>
-            {{clip.visualizacoes_clip}} 
-            <span *ngIf="clip.visualizacoes_clip == 1">Visualização</span>
-            <span *ngIf="clip.visualizacoes_clip != 1">Visualizações</span>
+
+
+<ion-content padding class="background-clip">
+  <div class="segment">
+    <ion-segment [(ngModel)]="opcoes">
+      <ion-segment-button value="clipe" style="color: white">
+        Clipe
+      </ion-segment-button>
+      <ion-segment-button value="kittens">
+        Puppies
+      </ion-segment-button>
+    </ion-segment>
+  </div>
+
+  <div [ngSwitch]="opcoes">
+    <ion-list *ngSwitchCase="'clipe'">
+      
+      <ion-item color="lista"> 
+        <iframe width="100%" height="350" [src]="videoUrl" frameborder="0" allowfullscreen>
+        </iframe>
+        
+        <ion-card-content>
+          <ion-card-title class="texto-centralizado">
+            {{subtitulo}}
+          </ion-card-title>
+          <p class="texto-centralizado">
+            {{descricao}}
           </p>
-          <p> 
-            {{clip.nota_clip}}
-            <span *ngIf="clip.nota_clip == 1">Estrela</span>
-            <span *ngIf="clip.nota_clip != 1">Estrelas</span>
-          </p>
-        </div>
-      </a>
-    </ion-item>
-    
-  </ion-list>
+        </ion-card-content>
+
+        <ion-item color="lista">
+          <ion-range min="0" max="100" pin="true" value="3" [(ngModel)]="avaliacao" color="menu">
+            <ion-icon range-left small name="star-outline"></ion-icon>
+            <ion-icon range-right name="star"></ion-icon>
+          </ion-range>
+        </ion-item>
+      </ion-item>
+
+    </ion-list>
+
+    <ion-list *ngSwitchCase="'kittens'">
+      <ion-item>
+        <ion-thumbnail item-start>
+          <img src="img/thumbnail-kitten-1.jpg">
+        </ion-thumbnail>
+        <h2>Luna</h2>
+      </ion-item>
+    </ion-list>
+  </div>
+
 </ion-content>

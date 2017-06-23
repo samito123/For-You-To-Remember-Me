@@ -26,7 +26,7 @@
     
     if (!mysqli_query($conexao, $sql1)) $erro_query++;
 
-    $sql2="select link_clip, img_clip, 
+    $sql2="select id_clip, link_clip, img_clip, 
      titulo_clip, subtitulo_clip, descricao_clip,
      data_clip, visualizacoes_clip, nota_clip
      from tb_clips 
@@ -36,6 +36,7 @@
     $result = $conexao->query($sql2);
     while($dados = $result->fetch_assoc())
     {
+      $row_array['id_clip'] = $dados['id_clip']; 
       $row_array['link_clip'] = $dados['link_clip']; 
       $row_array['img_clip'] = $dados['img_clip'];
       
