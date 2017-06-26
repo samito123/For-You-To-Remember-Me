@@ -9,18 +9,21 @@ import { HttpModule } from '@angular/http';
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
 import { ClipsPage } from '../pages/clips/clips';
-import { ClipeSelecionado } from '../pages/clipe_selecionado/clipe_selecionado';
 import { Avaliacao } from '../pages/modal/avaliacao/avaliacao';
 import { TabClip } from '../pages/tabs/clip/tab_clip';
+import { ClipeSelecionado } from '../pages/clipe_selecionado/clipe_selecionado';
+import { ClipeAvaliacao } from '../pages/clipe_avaliacao/clipe_avaliacao';
+
 
 @NgModule({
   declarations: [
     MyApp,
     HomePage,
     ClipsPage,
-    ClipeSelecionado,
     Avaliacao,
-    TabClip
+    TabClip,
+    ClipeSelecionado,
+    ClipeAvaliacao
   ],
   imports: [
     BrowserModule,
@@ -32,9 +35,10 @@ import { TabClip } from '../pages/tabs/clip/tab_clip';
     MyApp,
     HomePage,
     ClipsPage,
-    ClipeSelecionado,
     Avaliacao,
-    TabClip
+    TabClip,
+    ClipeSelecionado,
+    ClipeAvaliacao
   ],
   providers: [
     StatusBar,

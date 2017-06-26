@@ -1,4 +1,21 @@
-<ion-tabs>
-  <ion-tab [root]="tab1Root" tabTitle="Clipe"></ion-tab>
-  <ion-tab [root]="tab2Root" tabTitle="Mensagens"></ion-tab>
+<ion-header>
+  <ion-navbar color="menu">
+    <ion-buttons left>
+        <ion-icon>
+          <img src="./assets/icon/heart_icon.png">
+        </ion-icon>
+    </ion-buttons>
+    <ion-title>
+      <p>{{titulo}}</p>
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-tabs color="menu">
+  <ion-tab [root]="tab1" tabIcon="logo-youtube" 
+		   [rootParams]="clip" tabTitle="Clipe"></ion-tab>
+  <ion-tab [root]="tab2" tabIcon="chatbubbles" 
+  		   [rootParams]="clip" tabBadge="20" tabTitle="Mensagens"></ion-tab>
+  <ion-tab [root]="tab3" tabIcon="star" tabBadge="{{avaliacao}}" 
+  		   [rootParams]="clip" tabTitle="Avaliação"></ion-tab>
 </ion-tabs>

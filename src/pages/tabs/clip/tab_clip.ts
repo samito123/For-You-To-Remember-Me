@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
+import { NavParams } from 'ionic-angular';
+
 import { ClipeSelecionado } from '../../clipe_selecionado/clipe_selecionado';
-import { ClipsPage } from '../../clips/clips';
+import { ClipeAvaliacao } from '../../clipe_avaliacao/clipe_avaliacao';
 
 @Component({
   selector: 'page-tab-clip',
@@ -9,10 +11,22 @@ import { ClipsPage } from '../../clips/clips';
 
 export class TabClip {
  	
- 	tab1Root: any = ClipeSelecionado;
-  	tab2Root: any = ClipeSelecionado;
+ 	clip: any;
+ 	titulo: any;
+ 	avaliacao: any;
 
-  	constructor() {
+ 	tab1: any;
+  	tab2: any;
+  	tab3: any;
 
+  	constructor(public navParams: NavParams) {
+  		
+  		this.tab1 = ClipeSelecionado;
+  		this.tab3 = ClipeAvaliacao;
+  		this.clip = navParams.get("clipSelecionado");	
+  		console.log(this.clip);
+  		this.titulo = this.clip[0].titulo_clip;
+  		this.avaliacao = this.clip[0].nota_clip;
   	}
+
 }

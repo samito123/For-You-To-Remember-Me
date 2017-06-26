@@ -15,11 +15,12 @@ import { TabClip } from '../../pages/tabs/clip/tab_clip';
 
 export class ClipsPage {
   
-	//clips = [];
-	url = 'http://br400.teste.website/~appot240/for_you_to_remember_me/';
 	titulo: any;
 	clipList: any;
-	loader = this.ConfiguraLoading();
+	clip: any;
+
+	url = 'http://br400.teste.website/~appot240/for_you_to_remember_me/';
+	loader;
 
 	constructor(public navCtrl: NavController, public http: Http, 
 				public modalCtrl: ModalController, 
@@ -31,16 +32,12 @@ export class ClipsPage {
 		  this.AtualizaClipDaLista(clip);
 		});
 
-		//if(this.clips.length == 0){
-			this.CarregaLista(0);
-		//}
+		this.CarregaLista(0);
 	}
 
 	CarregaLista($offset){
-		this.loader.present().then(() => {
-			this.BuscaClips($offset);
-			this.loader.dismiss();
-		}); 
+		this.InicializarLoading();
+		this.BuscaClips($offset);	
 	}
 
 	BuscaClips($offset) {
@@ -56,22 +53,54 @@ export class ClipsPage {
 		this.http.post(this.url+'clips/consulta_clips_list_ionic.php', postParams, options)
 			.subscribe(data => {
 				this.clipList = JSON.parse(data['_body']);
+				this.EncerraLoading();
 			}, error => {
 				console.log(error);// Error getting the data
 		});
 	}
 
-	ConfiguraLoading() { 
-		let loader = this.loadingCtrl.create({
+	ClickClip(id) {
+		this.InicializarLoading();
+		this.RecuperaClip(id);	
+  	}
+
+  	RecuperaClip(id){
+  		var headers = new Headers();
+	    headers.append('Content-Type', 'application/x-www-form-urlencoded');
+	    let options = new RequestOptions({ headers: headers });
+	 
+	    let postParams = {
+			usuario: 'appot240_fytrm', senha: '6m-,f;ekPT%8', banco: 'appot240_fytrm', 
+			id_clip: id, visualizacoes_clip: 20
+	    }
+	    
+		this.http.post(this.url+'clips/consulta_clipe_id_ionic.php', postParams, options)
+			.subscribe(data => {
+				this.clip = JSON.parse(data['_body']);
+				this.RedirecionaParaTabClip();
+			}, error => {
+				console.log(error);
+				this.loader.dismiss();
+		});
+  	}
+
+  	RedirecionaParaTabClip(){
+  		this.EncerraLoading();
+  		//this.modalCtrl.create(TabClip).present();
+  		this.navCtrl.push(TabClip, {clipSelecionado: this.clip});
+  		//this.navCtrl.push(TabClip, {clipSelecionado: this.clip});
+  	}
+
+  	InicializarLoading() { 
+		this.loader = this.loadingCtrl.create({
 			content: "Carregando..."
-		});  
-		return loader;
+		}); 
+		this.loader.present()
 	}
 
-	VisualizarClipSelecionado(id, visualizacoes) {
-    	//this.navCtrl.push(ClipeSelecionado, {id_clip: id, visualizacoes_clip: visualizacoes});
-    	this.navCtrl.push(TabClip, {id_clip: id, visualizacoes_clip: visualizacoes});
-  	}
+	EncerraLoading(){
+		this.loader.dismiss();
+	}
 
   	AtualizaClipDaLista($clipe) {
     	var index = this.clipList.findIndex(clipe => clipe.id_clip === $clipe[0].id_clip);
