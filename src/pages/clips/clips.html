@@ -30,11 +30,20 @@
           <p class="subtitulo-lista">{{clip.subtitulo_clip.replace("#", " ")}}</p>
           <p>
             <ion-icon class=icon-lista name="eye"> 
-              {{clip.visualizacoes_clip}} </ion-icon>
+              <ion-badge color="menu">
+                {{clip.visualizacoes_clip}} 
+              </ion-badge>
+            </ion-icon>
             <ion-icon class=icon-lista name="chatboxes"> 
-              {{clip.nota_clip}}</ion-icon>
-            <ion-icon name="star"> 
-              {{clip.nota_clip}}</ion-icon>
+              <ion-badge color="menu">
+                {{clip.qtd_mensagens}}
+              </ion-badge>
+            </ion-icon>
+            <ion-icon name="star">
+              <ion-badge color="menu">
+                {{clip.avaliacao}}
+              </ion-badge> 
+            </ion-icon>
           </p>
         </ion-item>
       </ion-list>

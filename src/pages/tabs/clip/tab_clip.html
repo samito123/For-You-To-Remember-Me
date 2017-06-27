@@ -1,9 +1,14 @@
 <ion-header>
-  <ion-navbar color="menu">
+  <ion-navbar hideBackButton color="menu">
     <ion-buttons left>
-        <ion-icon>
-          <img src="./assets/icon/heart_icon.png">
-        </ion-icon>
+      <button ion-button (click)="AtualizaListaDeClips()">
+        <ion-icon class="icon-arrow" name="arrow-back"></ion-icon>
+      </button>
+    </ion-buttons>
+    <ion-buttons left>
+      <ion-icon>
+        <img src="./assets/icon/heart_icon.png">
+      </ion-icon>
     </ion-buttons>
     <ion-title>
       <p>{{titulo}}</p>
@@ -13,9 +18,9 @@
 
 <ion-tabs color="menu">
   <ion-tab [root]="tab1" tabIcon="logo-youtube" 
-		   [rootParams]="clip" tabTitle="Clipe"></ion-tab>
+		     [rootParams]="clip" tabTitle="Clipe"></ion-tab>
   <ion-tab [root]="tab2" tabIcon="chatbubbles" 
-  		   [rootParams]="clip" tabBadge="20" tabTitle="Mensagens"></ion-tab>
+  		   [rootParams]="clip" tabBadge="{{qtd_mensagens}}" tabTitle="Mensagens"></ion-tab>
   <ion-tab [root]="tab3" tabIcon="star" tabBadge="{{avaliacao}}" 
   		   [rootParams]="clip" tabTitle="Avaliação"></ion-tab>
 </ion-tabs>

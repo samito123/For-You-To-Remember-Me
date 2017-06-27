@@ -3,11 +3,11 @@ import { NavParams } from 'ionic-angular';
 import { LoadingController } from 'ionic-angular';
 
 @Component({
-  selector: 'page-clipe-avaliacao',
-  templateUrl: 'clipe_avaliacao.html'
+  selector: 'page-clipe-mensagem',
+  templateUrl: 'clipe_mensagem.html'
 })
 
-export class ClipeAvaliacao {
+export class ClipeMensagem {
  	
 	clip: any;
 	imagem: any;
@@ -21,16 +21,16 @@ export class ClipeAvaliacao {
 	constructor(public navParams: NavParams, public loadingCtrl: LoadingController) { 
 		
 		this.clip = navParams.data;
-		this.InicializaTabAvaliacao();
+		this.InicializaTabMensagem();
 	}
 
-	InicializaTabAvaliacao(){
+	InicializaTabMensagem(){
 		this.InicializarLoading();
-		this.SetAvaliacaoClipSelecionado();
+		this.SetMensagemClipSelecionado();
 		this.EncerraLoading();
 	}
 
-	SetAvaliacaoClipSelecionado(){
+	SetMensagemClipSelecionado(){
 		this.imagem = this.clip[0].img_clip;
 		this.titulo = this.clip[0].titulo_clip;
 		this.subtitulo = this.clip[0].subtitulo;		

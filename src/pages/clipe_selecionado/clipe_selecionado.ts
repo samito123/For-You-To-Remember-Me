@@ -1,15 +1,7 @@
 import { Component } from '@angular/core';
-import { App } from 'ionic-angular';
-import { NavController } from 'ionic-angular';
 import { NavParams } from 'ionic-angular';
-import { Http, Headers, RequestOptions } from '@angular/http';
-import { ModalController } from 'ionic-angular';
 import { LoadingController } from 'ionic-angular';
-import { Events } from 'ionic-angular';
 import { DomSanitizer } from '@angular/platform-browser';
-
-import { Avaliacao } from '../modal/avaliacao/avaliacao';
-import { ClipsPage } from '../clips/clips';
 
 @Component({
   selector: 'page-clipe',
@@ -32,11 +24,8 @@ export class ClipeSelecionado {
   	loader;
   	url = 'http://br400.teste.website/~appot240/for_you_to_remember_me/';
 	
-	constructor(private app: App, public navCtrl: NavController, public navParams: NavParams,
-				public http: Http, public modalCtrl: ModalController, 
-				public loadingCtrl: LoadingController, public events: Events,
+	constructor(public navParams: NavParams, public loadingCtrl: LoadingController,
 				public domSanitizer: DomSanitizer) { 
-		
 		this.clip = navParams.data;
 		this.InicializaTabClip();
 	}
@@ -63,10 +52,6 @@ export class ClipeSelecionado {
 		//this.events.publish('AtualizaClipDaLista', this.clipe);
 		//this.EncerraLoading();
 	}
-
-	VoltarParaClips() {
-	 	this.app.getRootNav().setRoot(ClipsPage)
-  	}
 
 	InicializarLoading() { 
 		this.loader = this.loadingCtrl.create({

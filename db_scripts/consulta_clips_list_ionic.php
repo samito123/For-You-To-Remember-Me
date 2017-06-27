@@ -8,6 +8,7 @@
   $senha= $angular_http_params["senha"];
   $banco= $angular_http_params["banco"];
   $offset= $angular_http_params["offset"];
+  $limit= $angular_http_params["limit"];
 
   $conexao = new mysqli('localhost',$usuario, $senha, $banco);
   $conexao->autocommit(FALSE);
@@ -18,14 +19,31 @@
 
   try{
     $erro_query = 0;
-
-    $sql="select id_clip, nick_usuario, img_usuario, 
-     img_clip, titulo_clip, subtitulo_clip,
-     data_clip, visualizacoes_clip, nota_clip
-     from tb_clips
-     inner join tb_usuarios on fk_usuario = id_usuario 
-     order by id_clip desc
-     limit 20 offset $offset";
+    $sql;
+    if($limit == false){
+      $sql="select id_clip, img_clip, titulo_clip, 
+      subtitulo_clip, data_clip, visualizacoes_clip, 
+      count(id_mensagem) as qtd_mensagens,
+      avg(cast(nullif(nota_avaliacao, 0) as bigint)) AS avaliacao
+      from tb_clips as tc
+      left join tb_mensagens as tm on tc.id_clip = tm.fk_clip
+      left join tb_avaliacoes as ta on tc.id_clip = ta.fk_clip
+      group by id_clip
+      order by id_clip desc
+      limit 20 offset $offset";
+    }else{
+      $sql="select id_clip, img_clip, titulo_clip, 
+      subtitulo_clip, data_clip, visualizacoes_clip, 
+      count(id_mensagem) as qtd_mensagens,
+      avg(nota_avaliacao) as avaliacao
+      from tb_clips as tc
+      left join tb_mensagens as tm on tc.id_clip = tm.fk_clip
+      left join tb_avaliacoes as ta on tc.id_clip = ta.fk_clip
+      group by id_clip
+      order by id_clip desc
+      limit 0, $offset";
+    }
+    
 
     $return_array_json = array();
     $result = $conexao->query($sql);
@@ -41,7 +59,8 @@
       
       $row_array['data_clip'] = $dados['data_clip'];
       $row_array['visualizacoes_clip'] = $dados['visualizacoes_clip'];
-      $row_array['nota_clip'] = $dados['nota_clip'];
+      $row_array['qtd_mensagens'] = $dados['qtd_mensagens'];
+      $row_array['avaliacao'] = $dados['avaliacao'];
 
       array_push($return_array_json,$row_array);
     }

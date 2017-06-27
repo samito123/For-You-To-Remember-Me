@@ -5,7 +5,6 @@ import { ModalController } from 'ionic-angular';
 import { LoadingController } from 'ionic-angular';
 
 import { Events } from 'ionic-angular';
-import { ClipeSelecionado } from '../../pages/clipe_selecionado/clipe_selecionado';
 import { TabClip } from '../../pages/tabs/clip/tab_clip';
 
 @Component({
@@ -18,6 +17,7 @@ export class ClipsPage {
 	titulo: any;
 	clipList: any;
 	clip: any;
+	offset: any = 0;
 
 	url = 'http://br400.teste.website/~appot240/for_you_to_remember_me/';
 	loader;
@@ -29,30 +29,32 @@ export class ClipsPage {
 		this.titulo = 'Clips';
 
 		events.subscribe('AtualizaClipDaLista', (clip) => {
-		  this.AtualizaClipDaLista(clip);
+		  this.AtualizaClipsDaLista(clip);
 		});
 
-		this.CarregaLista(0);
+		this.CarregaLista();
 	}
 
-	CarregaLista($offset){
+	CarregaLista(){
 		this.InicializarLoading();
-		this.BuscaClips($offset);	
+		this.BuscaClips();	
 	}
 
-	BuscaClips($offset) {
+	BuscaClips() {
 	    var headers = new Headers();
 	    headers.append('Content-Type', 'application/x-www-form-urlencoded');
 	    let options = new RequestOptions({ headers: headers });
 	 
 	    let postParams = {
 			usuario: 'appot240_fytrm', senha: '6m-,f;ekPT%8', banco: 'appot240_fytrm', 
-			offset: $offset
+			offset: this.offset, limit: false
 	    }
 	    
 		this.http.post(this.url+'clips/consulta_clips_list_ionic.php', postParams, options)
 			.subscribe(data => {
 				this.clipList = JSON.parse(data['_body']);
+				this.offset = this.clipList.length;
+				console.log(this.clipList);
 				this.EncerraLoading();
 			}, error => {
 				console.log(error);// Error getting the data
@@ -71,7 +73,7 @@ export class ClipsPage {
 	 
 	    let postParams = {
 			usuario: 'appot240_fytrm', senha: '6m-,f;ekPT%8', banco: 'appot240_fytrm', 
-			id_clip: id, visualizacoes_clip: 20
+			id_clip: id
 	    }
 	    
 		this.http.post(this.url+'clips/consulta_clipe_id_ionic.php', postParams, options)
@@ -86,9 +88,7 @@ export class ClipsPage {
 
   	RedirecionaParaTabClip(){
   		this.EncerraLoading();
-  		//this.modalCtrl.create(TabClip).present();
-  		this.navCtrl.push(TabClip, {clipSelecionado: this.clip});
-  		//this.navCtrl.push(TabClip, {clipSelecionado: this.clip});
+  		this.navCtrl.push(TabClip, {clipSelecionado: this.clip, offset: this.offset});
   	}
 
   	InicializarLoading() { 
@@ -102,9 +102,10 @@ export class ClipsPage {
 		this.loader.dismiss();
 	}
 
-  	AtualizaClipDaLista($clipe) {
-    	var index = this.clipList.findIndex(clipe => clipe.id_clip === $clipe[0].id_clip);
-    	this.clipList[index].visualizacoes_clip = $clipe[0].visualizacoes_clip;
-    	this.clipList[index].nota_clip = $clipe[0].nota_clip;
+  	AtualizaClipsDaLista(clips) {
+  		console.log(clips);
+    	for (var i = 0; i < this.clipList.length; i++) {
+    		this.clipList.splice(i, 1, clips[i]);
+    	}
   	}
 }

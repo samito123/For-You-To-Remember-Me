@@ -2,4 +2,22 @@ page-clipe-avaliacao {
 	.background-clip {
 	    background-image: url('../assets/wallpaper/clips.jpg');
 	}
+
+	@media screen and (min-width: 800px) {
+		.imagem-avaliacao{
+			width: 30em;
+			height: 30em;
+		    float: left;
+		    margin: 0 1em 0 0;
+		}
+	}
+
+	.sua-avaliacao{
+		text-align: center;
+	}
+
+	.buttom-avaliar{
+		margin: 2em 0 2em 0;
+	}
+	
 }	

@@ -2,4 +2,19 @@ page-clipe {
 	.background-clip {
 	    background-image: url('../assets/wallpaper/clips.jpg');
 	}
+
+	@media screen and (min-width: 800px) {
+		.video-clip{
+			width: 40%;
+			height: 30em;
+		    float: left;
+		}
+
+		.card-content{
+			width: 60%;
+			float: right;
+			padding: 0 5% 0 5%;
+		}
+	}
+
 }	

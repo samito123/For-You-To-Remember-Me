@@ -9,10 +9,10 @@ import { HttpModule } from '@angular/http';
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
 import { ClipsPage } from '../pages/clips/clips';
-import { Avaliacao } from '../pages/modal/avaliacao/avaliacao';
 import { TabClip } from '../pages/tabs/clip/tab_clip';
 import { ClipeSelecionado } from '../pages/clipe_selecionado/clipe_selecionado';
 import { ClipeAvaliacao } from '../pages/clipe_avaliacao/clipe_avaliacao';
+import { ClipeMensagem } from '../pages/clipe_mensagem/clipe_mensagem';
 
 
 @NgModule({
@@ -20,10 +20,10 @@ import { ClipeAvaliacao } from '../pages/clipe_avaliacao/clipe_avaliacao';
     MyApp,
     HomePage,
     ClipsPage,
-    Avaliacao,
     TabClip,
     ClipeSelecionado,
-    ClipeAvaliacao
+    ClipeAvaliacao,
+    ClipeMensagem
   ],
   imports: [
     BrowserModule,
@@ -35,10 +35,10 @@ import { ClipeAvaliacao } from '../pages/clipe_avaliacao/clipe_avaliacao';
     MyApp,
     HomePage,
     ClipsPage,
-    Avaliacao,
     TabClip,
     ClipeSelecionado,
-    ClipeAvaliacao
+    ClipeAvaliacao,
+    ClipeMensagem
   ],
   providers: [
     StatusBar,

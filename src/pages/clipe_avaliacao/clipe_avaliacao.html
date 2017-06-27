@@ -6,19 +6,28 @@
 <ion-content padding class="background-clip">
   
   <ion-card color="lista">
-    <img src="{{imagem}}"/>
+    <img class="imagem-avaliacao" src="{{imagem}}"/>
     <ion-card-content>
       <ion-card-title>
-        Nine Inch Nails Live
-        </ion-card-title>
+        Avaliação Geral: {{avaliacaoGeral}}
+      </ion-card-title>
+      <h2>{{subtitulo}}</h2>
+      <h2>{{titulo}}</h2>
       <p>
-        The most popular industrial group ever, and largely
-        responsible for bringing the music to a mass audience.
+        A sua avaliação vai influenciar na avaliação geral para esse post. 
       </p>
     </ion-card-content>
-    <ion-range min="0" max="100" pin="true" value="3" [(ngModel)]="avaliacao" color="menu">
+    <ion-range min="0" max="100" pin="true" [(ngModel)]="avaliacao" color="menu">
       <ion-icon range-left small name="star-outline"></ion-icon>
       <ion-icon range-right name="star"></ion-icon>
     </ion-range>
+    <p class="sua-avaliacao">
+      Sua avaliação: <ion-badge item-end color="menu">{{avaliacao}}</ion-badge>
+    </p>
+    <p class="sua-avaliacao">
+      <button class="buttom-avaliar" color="menu" ion-button icon-left>
+        <ion-icon name="star"> Avaliar</ion-icon>
+      </button>
+    </p>
   </ion-card>
 </ion-content>
