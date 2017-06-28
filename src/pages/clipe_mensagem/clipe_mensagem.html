@@ -4,16 +4,21 @@
 </ion-header>
 
 <ion-content padding class="background-clip">
-  <ion-item-group class="item-group">
-    <ion-item-divider color="menu">22/07/1988</ion-item-divider>
+  <ion-item-group *ngFor="let mensagem of mensagemList" class="item-group">
+    <ion-item-divider color="menu">{{mensagem.data_hora_mensagem}}</ion-item-divider>
       <ion-item style="padding-bottom: 1em;" color="lista">
         <ion-avatar item-start>
-          <img src="img/avatar-finn.png">
+          <a href="#"><img src="{{mensagem.img_usuario}}"></a>
         </ion-avatar>
-        <h2>Finn</h2>
-        <h3>Don't Know What To Do!</h3>
-        <p>I've had a pretty messed up day. If we just...</p>
-        <p item-end>22:30</p>
+        <h2>{{mensagem.nick_usuario}}</h2>
+        <h3>Assunto: {{mensagem.titulo_mensagem}}</h3>
+        <p class="corpo-mensagem">{{mensagem.corpo_mensagem}}</p>
+        <p item-end>
+          {{mensagem.data_hora_mensagem.substring(
+            mensagem.data_hora_mensagem.length-5, 
+            mensagem.data_hora_mensagem.length)
+          }}
+        </p>
       </ion-item>
   </ion-item-group>
 </ion-content>

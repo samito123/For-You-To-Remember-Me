@@ -54,7 +54,6 @@ export class ClipsPage {
 			.subscribe(data => {
 				this.clipList = JSON.parse(data['_body']);
 				this.offset = this.clipList.length;
-				console.log(this.clipList);
 				this.EncerraLoading();
 			}, error => {
 				console.log(error);// Error getting the data

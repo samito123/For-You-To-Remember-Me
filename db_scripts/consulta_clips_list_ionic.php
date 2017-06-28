@@ -23,8 +23,8 @@
     if($limit == false){
       $sql="select id_clip, img_clip, titulo_clip, 
       subtitulo_clip, data_clip, visualizacoes_clip, 
-      count(id_mensagem) as qtd_mensagens,
-      avg(cast(nullif(nota_avaliacao, 0) as bigint)) AS avaliacao
+      count(distinct id_mensagem) as qtd_mensagens,
+      round(coalesce(avg(nota_avaliacao), 0), 2) as avaliacao
       from tb_clips as tc
       left join tb_mensagens as tm on tc.id_clip = tm.fk_clip
       left join tb_avaliacoes as ta on tc.id_clip = ta.fk_clip
@@ -34,8 +34,8 @@
     }else{
       $sql="select id_clip, img_clip, titulo_clip, 
       subtitulo_clip, data_clip, visualizacoes_clip, 
-      count(id_mensagem) as qtd_mensagens,
-      avg(nota_avaliacao) as avaliacao
+      count(distinct id_mensagem) as qtd_mensagens,
+      round(coalesce(avg(nota_avaliacao), 0), 2) as avaliacao
       from tb_clips as tc
       left join tb_mensagens as tm on tc.id_clip = tm.fk_clip
       left join tb_avaliacoes as ta on tc.id_clip = ta.fk_clip
