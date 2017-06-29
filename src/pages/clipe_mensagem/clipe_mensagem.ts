@@ -3,6 +3,7 @@ import { NavParams } from 'ionic-angular';
 import { LoadingController } from 'ionic-angular';
 import { Http, Headers, RequestOptions } from '@angular/http';
 
+
 @Component({
   selector: 'page-clipe-mensagem',
   templateUrl: 'clipe_mensagem.html'
@@ -12,6 +13,8 @@ export class ClipeMensagem {
  	
 	clip: any;
 	mensagemList: any;
+	imagemExpandida : any;
+
 
 	url = 'http://br400.teste.website/~appot240/for_you_to_remember_me/';
 	loader;
@@ -45,6 +48,39 @@ export class ClipeMensagem {
 			}, error => {
 				console.log(error);// Error getting the data
 		});
+	}
+
+	ExpandirImagem(imagem){
+		this.imagemExpandida = imagem;
+		this.FadeIn(document.querySelector('.divImagemExpandida'), "inline-block");
+
+	}
+
+	FecharImagemExpandida(){
+		this.FadeOut(document.querySelector('.divImagemExpandida'));
+	}
+
+	FadeOut(elemento){
+		elemento.style.opacity = 1;
+		(function fade() {
+			if ((elemento.style.opacity -= .1) < 0) {
+				elemento.style.display = "none";
+			} else {
+				requestAnimationFrame(fade);
+			}
+		})();
+	}
+
+	FadeIn(elemento, display){
+		elemento.style.opacity = 0;
+		elemento.style.display = display || "block";
+		(function fade() {
+			var val = parseFloat(elemento.style.opacity);
+			if (!((val += .1) > 1)) {
+				elemento.style.opacity = val;
+				requestAnimationFrame(fade);
+			}
+		})();
 	}
 
 	InicializarLoading() { 

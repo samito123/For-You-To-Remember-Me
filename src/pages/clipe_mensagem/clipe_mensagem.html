@@ -4,11 +4,19 @@
 </ion-header>
 
 <ion-content padding class="background-clip">
+  <div class='divImagemExpandida fade-in is-paused'>
+    <img src="{{imagemExpandida}}" class="img-center"/>
+    <div (click)="FecharImagemExpandida()" class="buttom-close cursor-click">
+      <ion-icon name="close-circle"></ion-icon>
+    </div> 
+  </div>
   <ion-item-group *ngFor="let mensagem of mensagemList" class="item-group">
     <ion-item-divider color="menu">{{mensagem.data_hora_mensagem}}</ion-item-divider>
       <ion-item style="padding-bottom: 1em;" color="lista">
         <ion-avatar item-start>
-          <a href="#"><img src="{{mensagem.img_usuario}}"></a>
+          <a class="cursor-click" (click)="ExpandirImagem(mensagem.img_usuario)">
+            <img src="{{mensagem.img_usuario}}">
+          </a>
         </ion-avatar>
         <h2>{{mensagem.nick_usuario}}</h2>
         <h3>Assunto: {{mensagem.titulo_mensagem}}</h3>
