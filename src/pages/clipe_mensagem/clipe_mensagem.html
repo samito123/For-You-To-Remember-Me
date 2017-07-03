@@ -4,29 +4,55 @@
 </ion-header>
 
 <ion-content padding class="background-clip">
-  <div class='divImagemExpandida fade-in is-paused'>
-    <img src="{{imagemExpandida}}" class="img-center"/>
-    <div (click)="FecharImagemExpandida()" class="buttom-close cursor-click">
-      <ion-icon name="close-circle"></ion-icon>
-    </div> 
+  <div class='divImagemExpandidaClipeMensagem fade-in is-paused' (click)="FecharImagemExpandida()">
+    <div class="div-center">
+      <img class="img-usuario" src="{{imagemExpandida}}" />
+      <p class="img-usuario-mensagem">
+        Toque para fechar
+      </p>
+    </div>
   </div>
-  <ion-item-group *ngFor="let mensagem of mensagemList" class="item-group">
-    <ion-item-divider color="menu">{{mensagem.data_hora_mensagem}}</ion-item-divider>
-      <ion-item style="padding-bottom: 1em;" color="lista">
-        <ion-avatar item-start>
-          <a class="cursor-click" (click)="ExpandirImagem(mensagem.img_usuario)">
-            <img src="{{mensagem.img_usuario}}">
-          </a>
-        </ion-avatar>
-        <h2>{{mensagem.nick_usuario}}</h2>
-        <h3>Assunto: {{mensagem.titulo_mensagem}}</h3>
-        <p class="corpo-mensagem">{{mensagem.corpo_mensagem}}</p>
-        <p item-end>
-          {{mensagem.data_hora_mensagem.substring(
-            mensagem.data_hora_mensagem.length-5, 
-            mensagem.data_hora_mensagem.length)
-          }}
-        </p>
-      </ion-item>
-  </ion-item-group>
+
+  <ion-card *ngFor="let mensagem of mensagemList" color="lista">
+
+    <ion-item color="menu">
+      <ion-thumbnail item-start>
+        <a class="cursor-click" (click)="ExpandirImagem(mensagem.img_usuario)">
+          <img class="img-thumbnail" src="{{mensagem.img_usuario}}">
+        </a>
+      </ion-thumbnail>
+      <h2>{{mensagem.nick_usuario}}</h2>
+      <p>{{mensagem.titulo_mensagem}}</p>
+      <p>{{FormataAnoMesPorExtensoEmPortugues(mensagem.data_hora_mensagem)}}</p>
+      <p>{{FormataDiaHoraPorExtensoEmPortugues(mensagem.data_hora_mensagem)}}</p>
+    </ion-item>
+
+    <ion-card-content>
+      <p>{{mensagem.corpo_mensagem}}</p>
+    </ion-card-content>
+
+    <!--<ion-row>
+      <ion-col>
+        <button ion-button clear small color="menu">
+          <ion-icon name="thumbs-up"></ion-icon>
+          <div class="div-rodape-mensagem">12 Likes</div>
+        </button>
+      </ion-col>
+      <ion-col>
+        <button ion-button clear small color="menu" 
+         (click)="EditarMensagem(mensagem.id_mensagem)">
+          <ion-icon name="md-create"></ion-icon>
+          <div class="div-rodape-mensagem">Editar</div>
+        </button>
+      </ion-col>
+      <ion-col>
+        <button ion-button clear small color="menu" 
+         (click)="ExcluirMensagem(mensagem.id_mensagem)">
+          <ion-icon name="trash"></ion-icon>
+          <div class="div-rodape-mensagem">Excluir</div>
+        </button>
+      </ion-col>
+    </ion-row>-->
+
+  </ion-card>
 </ion-content>

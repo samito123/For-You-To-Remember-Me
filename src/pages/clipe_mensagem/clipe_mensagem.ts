@@ -14,7 +14,7 @@ export class ClipeMensagem {
 	clip: any;
 	mensagemList: any;
 	imagemExpandida : any;
-
+	data: any;
 
 	url = 'http://br400.teste.website/~appot240/for_you_to_remember_me/';
 	loader;
@@ -50,14 +50,49 @@ export class ClipeMensagem {
 		});
 	}
 
+	FormataAnoMesPorExtensoEmPortugues(dataHora){
+		var meses = new Array("Jan","Fev","Mar",
+			"Abr","Mai","Jun","Jul","Ago","Set",
+			"Out","Nov","Dez");
+
+		var data = new Date(dataHora);
+		var ano = data.getFullYear();
+		var mes = data.getMonth();
+		var AnoMesPorExtenso = meses[mes] + " de "+ ano;
+		return AnoMesPorExtenso;
+	}
+
+	FormataDiaHoraPorExtensoEmPortugues(dataHora){
+		var semana = new Array("Dom","Seg","Ter",
+			"Qua","Qui","Sex","Sáb");
+
+
+		var data = new Date(dataHora);
+		var dia = data.getDate();
+		var dias = data.getDay();
+		
+		var hora = this.FormataNumeroMenorQueDez(data.getUTCHours());
+		var minuto = this.FormataNumeroMenorQueDez(data.getUTCMinutes());
+		var horaPorExtenso = semana[dias] + ", " + " às "+ hora + ":"+ minuto;
+		return horaPorExtenso;
+	}
+
+	FormataNumeroMenorQueDez(numero){
+		var numeroFormatado = numero;
+		if(numero < 10){
+			numeroFormatado = "0" + numeroFormatado;
+		}
+		return numeroFormatado;
+	}
+
 	ExpandirImagem(imagem){
 		this.imagemExpandida = imagem;
-		this.FadeIn(document.querySelector('.divImagemExpandida'), "inline-block");
-
+		this.FadeIn(document.querySelector(
+			'.divImagemExpandidaClipeMensagem'), "inline-block");
 	}
 
 	FecharImagemExpandida(){
-		this.FadeOut(document.querySelector('.divImagemExpandida'));
+		this.FadeOut(document.querySelector('.divImagemExpandidaClipeMensagem'));
 	}
 
 	FadeOut(elemento){
@@ -81,6 +116,14 @@ export class ClipeMensagem {
 				requestAnimationFrame(fade);
 			}
 		})();
+	}
+
+	EditarMensagem(idMensagem){
+		console.log("id: "+ idMensagem);
+	}
+
+	ExcluirMensagem(idMensagem){
+		console.log("id: "+ idMensagem);
 	}
 
 	InicializarLoading() { 

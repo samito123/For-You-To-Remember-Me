@@ -3,16 +3,9 @@ page-clipe-mensagem {
 	    background-image: url('../assets/wallpaper/clips.jpg');
 	}
 
-	.item-group{
-		margin: 1em 0 0 0;
-	}
-
-	.corpo-mensagem{
-		color: #c2165a;
-	}
-
 	.cursor-click{
 		cursor: pointer;
+		color: white;
 	}
 
 	@keyframes fadeIn {
@@ -53,14 +46,25 @@ page-clipe-mensagem {
 	  color: #a50001;
 	}
 
-	.img-center{
-	  width:27em;
-	  height:27em;
-	  position:absolute;
-	  top:50%;
-	  left:50%;
-	  margin-top:-13.5em;
-	  margin-left:-13.5em;
+	.div-center{
+	  max-width: 27em;
+	  max-height: 27em;
+	  position: absolute;
+	  top: 48%;
+	  left: 50%;
+	  margin-top: -13.5em;
+	  margin-left: -13.5em;
+	}
+
+	.img-usuario{
+	  width: 27em;
+	  height: 27em;
+	}
+
+	.img-usuario-mensagem{
+	  color: white; 
+	  font-size: 0.8em;
+	  text-align: center;
 	}
 
 }	

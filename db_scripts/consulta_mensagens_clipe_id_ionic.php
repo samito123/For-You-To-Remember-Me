@@ -19,7 +19,7 @@
   try{
     $erro_query = 0;
 
-    $sql1="select titulo_mensagem, corpo_mensagem,
+    $sql1="select id_mensagem, titulo_mensagem, corpo_mensagem,
     data_hora_mensagem, img_usuario, nick_usuario
     from tb_mensagens as tm
     left join tb_usuarios as tu on tu.id_usuario = tm.fk_usuario
@@ -30,10 +30,11 @@
     $result = $conexao->query($sql1);
     while($dados = $result->fetch_assoc())
     {
+      $row_array['id_mensagem'] = $dados['id_mensagem']; 
       $row_array['titulo_mensagem'] = $dados['titulo_mensagem']; 
       $row_array['corpo_mensagem'] = $dados['corpo_mensagem']; 
-      $row_array['data_hora_mensagem'] = $dados['data_hora_mensagem'];
       
+      $row_array['data_hora_mensagem'] = $dados['data_hora_mensagem'];
       $row_array['img_usuario'] = $dados['img_usuario'];
       $row_array['nick_usuario'] = $dados['nick_usuario'];
   

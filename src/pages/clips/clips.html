@@ -19,13 +19,24 @@
 </ion-header>
 
 <ion-content padding class="background-clips">
+  <div class='divImagemExpandidaClips fade-in is-paused' (click)="FecharImagemExpandida()">
+    <div class="div-center">
+      <img class="img-usuario" src="{{imagemExpandida}}" />
+      <p class="img-usuario-mensagem">
+        Toque para fechar
+      </p>
+    </div>
+  </div>
+
   <ion-list *ngFor="let clip of clipList"> 
-    <a class="link-sem-decoracao" href="#" (click)="ClickClip(clip.id_clip)">
-      <ion-list>
-        <ion-item color="lista">
-          <ion-thumbnail item-start>
+    <ion-list>
+      <ion-item color="lista">
+        <ion-thumbnail item-start>
+          <a class="cursor-click" (click)="ExpandirImagem(clip.img_clip)">
             <img src="{{clip.img_clip}}">
-          </ion-thumbnail>
+          </a>
+        </ion-thumbnail>
+        <a class="link-sem-decoracao" href="#" (click)="ClickClip(clip.id_clip)">
           <h2>{{clip.titulo_clip}}</h2>
           <p class="subtitulo-lista">{{clip.subtitulo_clip.replace("#", " ")}}</p>
           <p>
@@ -45,8 +56,8 @@
               </ion-badge> 
             </ion-icon>
           </p>
-        </ion-item>
-      </ion-list>
-    </a> 
+        </a>
+      </ion-item>
+    </ion-list>  
   </ion-list>
 </ion-content>

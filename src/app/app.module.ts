@@ -7,7 +7,7 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { HttpModule } from '@angular/http';
 
 import { MyApp } from './app.component';
-import { HomePage } from '../pages/home/home';
+import { LoginPage } from '../pages/login/login';
 import { ClipsPage } from '../pages/clips/clips';
 import { TabClip } from '../pages/tabs/clip/tab_clip';
 import { ClipeSelecionado } from '../pages/clipe_selecionado/clipe_selecionado';
@@ -18,7 +18,7 @@ import { ClipeMensagem } from '../pages/clipe_mensagem/clipe_mensagem';
 @NgModule({
   declarations: [
     MyApp,
-    HomePage,
+    LoginPage,
     ClipsPage,
     TabClip,
     ClipeSelecionado,
@@ -33,7 +33,7 @@ import { ClipeMensagem } from '../pages/clipe_mensagem/clipe_mensagem';
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
-    HomePage,
+    LoginPage,
     ClipsPage,
     TabClip,
     ClipeSelecionado,
