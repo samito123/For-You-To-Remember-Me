@@ -28,7 +28,7 @@ export class ClipsPage {
 				public loadingCtrl: LoadingController, public events: Events) { 
 
 		this.titulo = 'Clips';
-
+		
 		events.subscribe('AtualizaClipDaLista', (clip) => {
 		  this.AtualizaClipsDaLista(clip);
 		});

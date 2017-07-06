@@ -12,16 +12,19 @@
       </div>
     </div>
     <hr>
-    <ion-item class="input-login">
-      <ion-input placeholder="Login" clearInput></ion-input>
-    </ion-item>
-    <ion-item class="input-senha">
-      <ion-input placeholder="Senha" type="password" clearInput></ion-input>
-    </ion-item>
-    <div text-center class="btn-logar">
-      <button ion-button color="white" clear
-        (click)="LogarUsuario()">Logar</button>
-    </div>
+    <form (ngSubmit)="LogarUsuario()" ngNativeValidate>
+      <ion-item class="input-login">
+        <ion-input placeholder="Login" clearInput required
+        [(ngModel)]="usuarioForm.login" name="login">{{inputLogin}}</ion-input>
+      </ion-item>
+      <ion-item class="input-senha">
+        <ion-input placeholder="Senha" type="password" clearInput required
+        [(ngModel)]="usuarioForm.senha" name="senha">{{inputSenha}}</ion-input>
+      </ion-item>
+      <div text-center class="btn-logar">
+        <button type="submit" ion-button color="white" clear>Logar</button>
+      </div>
+    </form>
     <div>
       <hr>
     </div>
