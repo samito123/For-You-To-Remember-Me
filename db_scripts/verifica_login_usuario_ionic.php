@@ -10,7 +10,6 @@
   $loginUsuario = $angular_http_params["loginUsuario"];
   $senhaUsuario = md5($angular_http_params["senhaUsuario"]);
 
-
   $conexao = new mysqli('localhost',$usuario, $senha, $banco);
   $conexao->autocommit(FALSE);
   $conexao->query("SET NAMES 'utf8'");
@@ -21,7 +20,8 @@
   try{
     $erro_query = 0;
 
-    $sql1="select id_usuario, img_usuario, nick_usuario
+    $sql1="select id_usuario, img_usuario, 
+     nick_usuario, email_usuario
      from tb_usuarios 
      where login_usuario = '$loginUsuario' 
      and senha_usuario = '$senhaUsuario'";
@@ -33,6 +33,7 @@
       $row_array['id_usuario'] = $dados['id_usuario']; 
       $row_array['img_usuario'] = $dados['img_usuario']; 
       $row_array['nick_usuario'] = $dados['nick_usuario'];
+      $row_array['email_usuario'] = $dados['email_usuario'];
       
       array_push($return_array_json,$row_array);
     }

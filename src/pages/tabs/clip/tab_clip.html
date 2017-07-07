@@ -2,7 +2,7 @@
   <ion-navbar hideBackButton color="menu">
     <ion-buttons left>
       <button ion-button (click)="AtualizaListaDeClips()">
-        <ion-icon class="icon-arrow" name="arrow-back"></ion-icon>
+        <ion-icon class="icon-menu" name="arrow-back"></ion-icon>
       </button>
     </ion-buttons>
     <ion-buttons left>
@@ -13,6 +13,11 @@
     <ion-title>
       <p>{{titulo}}</p>
     </ion-title>
+    <ion-buttons right>
+      <button ion-button (click)="EscreverNovoComentario()">
+        <ion-icon class="icon-chat" name="ios-chatboxes"></ion-icon>
+      </button>
+    </ion-buttons>
   </ion-navbar>
 </ion-header>
 

@@ -18,8 +18,8 @@ export class ClipsPage {
 	clipList: any;
 	clip: any;
 	offset: any = 0;
-	imagemExpandida : any;
 
+	imagemExpandida: any;
 	url = 'http://br400.teste.website/~appot240/for_you_to_remember_me/';
 	loader;
 
@@ -91,10 +91,28 @@ export class ClipsPage {
   		this.navCtrl.push(TabClip, {clipSelecionado: this.clip, offset: this.offset});
   	}
 
+  	InicializarLoading() { 
+		this.loader = this.loadingCtrl.create({
+			content: "Carregando..."
+		}); 
+		this.loader.present()
+	}
+
+	EncerraLoading(){
+		this.loader.dismiss();
+	}
+
+  	AtualizaClipsDaLista(clips) {
+  		console.log(clips);
+    	for (var i = 0; i < this.clipList.length; i++) {
+    		this.clipList.splice(i, 1, clips[i]);
+    	}
+  	}
+
   	ExpandirImagem(imagem){
 		this.imagemExpandida = imagem;
-		this.FadeIn(document.querySelector('.divImagemExpandidaClips'), "inline-block");
-
+		this.FadeIn(document.querySelector(
+			'.divImagemExpandidaClips'), "inline-block");
 	}
 
 	FecharImagemExpandida(){
@@ -123,22 +141,4 @@ export class ClipsPage {
 			}
 		})();
 	}
-
-  	InicializarLoading() { 
-		this.loader = this.loadingCtrl.create({
-			content: "Carregando..."
-		}); 
-		this.loader.present()
-	}
-
-	EncerraLoading(){
-		this.loader.dismiss();
-	}
-
-  	AtualizaClipsDaLista(clips) {
-  		console.log(clips);
-    	for (var i = 0; i < this.clipList.length; i++) {
-    		this.clipList.splice(i, 1, clips[i]);
-    	}
-  	}
 }

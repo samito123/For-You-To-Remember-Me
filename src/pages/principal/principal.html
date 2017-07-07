@@ -1,0 +1,25 @@
+<ion-menu [content]="conteudo">
+  <ion-content class="div-content">
+    <div>
+      <div class="card-background-page">
+        <ion-card>    
+          <img class="img-card" src="{{imagemUsuario}}">
+          <div class="card-title">{{nickUsuario}}</div>
+          <div class="card-subtitle">{{emailUsuario}}</div>
+        </ion-card>
+      </div>
+      <button menuClose ion-item icon-left color="menu">
+        <ion-icon name="logo-youtube"> Clips</ion-icon>
+      </button>
+      <button menuClose ion-item icon-left color="menu">
+        <ion-icon name="videocam"> Videos</ion-icon>
+      </button>
+      <button menuClose ion-item icon-left color="menu"
+      (click)="LogoutUsuario()">
+        <ion-icon name="md-exit"> Logout</ion-icon>
+      </button>
+    </div>
+  </ion-content>
+</ion-menu>
+
+<ion-nav [root]="rootPage" #conteudo></ion-nav>

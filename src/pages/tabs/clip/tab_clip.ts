@@ -4,10 +4,13 @@ import { NavController } from 'ionic-angular';
 import { LoadingController } from 'ionic-angular';
 import { Http, Headers, RequestOptions } from '@angular/http';
 import { Events } from 'ionic-angular';
+import { ModalController } from 'ionic-angular';
 
 import { ClipeSelecionado } from '../../clipe_selecionado/clipe_selecionado';
 import { ClipeMensagem } from '../../clipe_mensagem/clipe_mensagem';
 import { ClipeAvaliacao } from '../../clipe_avaliacao/clipe_avaliacao';
+import { AdicionarComentarioClip } from '../../modal/adicionar_comentario_clip/adicionar_comentario_clip';
+
 
 @Component({
   selector: 'page-tab-clip',
@@ -32,7 +35,7 @@ export class TabClip {
 
 	constructor(public navParams: NavParams, public navCtrl: NavController,
 				public loadingCtrl: LoadingController, public http: Http,
-				public events: Events) {
+				public events: Events, public modalCtrl: ModalController) {
 		this.tab1 = ClipeSelecionado;
 		this.tab2 = ClipeMensagem;
 		this.tab3 = ClipeAvaliacao;
@@ -68,6 +71,12 @@ export class TabClip {
 
 	VoltarParaListaDeClips(){
 		this.navCtrl.pop();
+	}
+
+	EscreverNovoComentario(){
+		let modal = this.modalCtrl.create(AdicionarComentarioClip);
+    	modal.present();
+    	console.log("aaa");
 	}
 
 	InicializarLoading() { 
